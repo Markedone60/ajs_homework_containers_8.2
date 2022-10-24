@@ -1,14 +1,26 @@
 export default class ErrorRepository {
-  Constructor() {
-    this.errRepo = new Map([
+  constructor(key, value) {
+    this.key = key;
+    this.value = value;
+    this.keys = new Map([
       [11, 'just error'],
       [12, 'minor issue'],
       [13, 'major problem'],
-      [14, 'catastrophic failure']
     ]);
+
+    this.keys.set({
+      key,
+      value,
+    });
   }
 
   translate(code) {
-    return this.errRepo.get(code) || 'Unknown error';
+    let result;
+    if (this.keys.has(code)) {
+      result = this.keys.get(code);
+    } else {
+      result = 'Unknown error';
+    }
+    return result;
   }
 }

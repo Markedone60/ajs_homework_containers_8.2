@@ -1,10 +1,11 @@
 import ErrorRepository from '../app';
 
-test.each([
-  [11, 'just error'],
-  [12, 'minor issue'],
-  [13, 'major problem'],
-  [14, 'catastrophic failure']
-]) ('testing each error within Map container', (code, desc) => {
-  expect(new ErrorRepository().translate(code)).toBe(desc);
-})
+test('Checking description', () => {
+  const errorRepository = new ErrorRepository();
+  expect(errorRepository.translate(11)).toBe('just error');
+});
+
+test('Checking error', () => {
+  const errorRepository = new ErrorRepository();
+  expect(errorRepository.translate(111)).toBe('Unknown error');
+});
